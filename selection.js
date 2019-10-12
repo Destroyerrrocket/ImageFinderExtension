@@ -1,3 +1,6 @@
+key = "<KEY GOES HERE>"
+cx = "<CX GOES HERE>"
+
 f = function () {
 	var selection = window.getSelection();
 	if (selection.rangeCount > 0) {
@@ -15,7 +18,11 @@ f = function () {
 				}
 			}
 		}
-		xmlhttp.open("GET", browser.extension.getURL('apple.json'), true);
+		url = "https://www.googleapis.com/customsearch/v1?q=" +
+			selection.toString().split(" ")[0] +
+			"&num=1&imgSize=large&searchType=image&key=" + key + "&cx=" + cx
+		console.log(url);
+		xmlhttp.open("GET", url, true);
 		xmlhttp.send();
 	}
 };
